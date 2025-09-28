@@ -19,7 +19,7 @@ final ThemeData lightTheme = ThemeData(
   ),
   appBarTheme: const AppBarTheme(
     // backgroundColor: Color(AppColors.primary),
-    iconTheme: IconThemeData(color: Color(AppColors.onPrimary)),
+    iconTheme: IconThemeData(color: Color(AppColors.onSurface)),
     titleTextStyle: TextStyle(
       color: Color(AppColors.onSurface),
       fontSize: 20,

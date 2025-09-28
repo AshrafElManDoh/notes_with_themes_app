@@ -19,7 +19,7 @@ final ThemeData darkTheme = ThemeData(
   ),
   appBarTheme: const AppBarTheme(
     // backgroundColor: Color(AppColors.darkPrimary),
-    iconTheme: IconThemeData(color: Color(AppColors.darkOnPrimary)),
+    iconTheme: IconThemeData(color: Color(AppColors.darkOnSurface)),
     titleTextStyle: TextStyle(
       color: Color(AppColors.darkOnSurface),
       fontSize: 20,

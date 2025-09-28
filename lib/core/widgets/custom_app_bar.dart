@@ -12,6 +12,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       // centerTitle: true,
       forceMaterialTransparency: true,
+      
       title: Text(
         "Notes App",
         style: Theme.of(context).appBarTheme.titleTextStyle,
