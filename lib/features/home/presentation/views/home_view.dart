@@ -14,7 +14,7 @@ class HomeView extends StatelessWidget {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            // isScrollControlled: true,
+            isScrollControlled: true,
             builder: (context) => BottomSheetBody(),
           );
         },
