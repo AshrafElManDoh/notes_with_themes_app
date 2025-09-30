@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_with_themes_app/core/widgets/custom_app_bar.dart';
 import 'package:notes_with_themes_app/core/widgets/custom_button.dart';
-import 'package:notes_with_themes_app/core/widgets/custom_text_form_field.dart';
 
 class EditView extends StatelessWidget {
   const EditView({super.key});

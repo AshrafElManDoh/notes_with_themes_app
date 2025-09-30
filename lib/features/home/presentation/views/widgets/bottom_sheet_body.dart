@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_with_themes_app/core/widgets/custom_button.dart';
 import 'package:notes_with_themes_app/core/widgets/custom_text_form_field.dart';
+import 'package:notes_with_themes_app/features/home/data/models/note_model.dart';
 import 'package:notes_with_themes_app/features/home/presentation/views_model/note_cubit/note_cubit.dart';
 
 class BottomSheetBody extends StatelessWidget {
@@ -16,7 +17,7 @@ class BottomSheetBody extends StatelessWidget {
         top: 16,
         right: 16,
         left: 16,
-        bottom: MediaQuery.of(context).viewInsets.bottom +16,
+        bottom: MediaQuery.of(context).viewInsets.bottom + 16,
       ),
       child: SingleChildScrollView(
         child: Form(
@@ -36,13 +37,13 @@ class BottomSheetBody extends StatelessWidget {
               CustomTextFormField(
                 hint: "Title",
                 maxLines: 1,
-                controller: noteCubit.titleFormField,
+                controller: noteCubit.titleController,
               ),
               SizedBox(height: 16),
               CustomTextFormField(
                 hint: "note",
                 maxLines: 5,
-                controller: noteCubit.noteFormField,
+                controller: noteCubit.noteController,
               ),
               SizedBox(height: 32),
               CustomButton(
@@ -50,6 +51,15 @@ class BottomSheetBody extends StatelessWidget {
                 onTap: () {
                   if (noteCubit.formKey.currentState!.validate()) {
                     noteCubit.formKey.currentState!.save();
+                    noteCubit.saveNote(
+                      note: NoteModel(
+                        title: noteCubit.titleController.text,
+                        note: noteCubit.noteController.text,
+                        date: noteCubit.saveTime(),
+                        color: 1,
+                      ),
+                    );
+                    Navigator.pop(context);
                   }
                 },
               ),

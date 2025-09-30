@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:notes_with_themes_app/core/app_constants.dart';
+import 'package:notes_with_themes_app/features/home/data/models/note_model.dart';
 
 part 'note_state.dart';
 
@@ -7,6 +10,34 @@ class NoteCubit extends Cubit<NoteState> {
   NoteCubit() : super(NoteInitial());
 
   GlobalKey<FormState> formKey = GlobalKey();
-  TextEditingController titleFormField = TextEditingController();
-  TextEditingController noteFormField = TextEditingController();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController noteController = TextEditingController();
+
+  String saveTime() {
+    DateTime now = DateTime.now();
+    int hour = now.hour;
+    int minute = now.minute;
+    String period = hour >= 12 ? "PM" : "AM";
+
+    String formattedTime =
+        "${hour == 0 ? 12 : (hour > 12 ? hour - 12 : hour)}:${minute.toString().padLeft(2, '0')} $period";
+
+    return formattedTime;
+  }
+
+  List<NoteModel> loadNotes() {
+    List<NoteModel> list = Hive.box<NoteModel>(
+      AppConstants.kNoteBox,
+    ).values.toList();
+    return list;
+  }
+
+  void saveNote({required NoteModel note}) async {
+    emit(LoadNote());
+    var box = await Hive.openBox<NoteModel>(AppConstants.kNoteBox);
+    box.add(note);
+    titleController.clear();
+    noteController.clear();
+    emit(AddNote());
+  }
 }

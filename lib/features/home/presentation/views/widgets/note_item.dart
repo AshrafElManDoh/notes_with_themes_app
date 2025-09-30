@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:notes_with_themes_app/features/edit/presentation/views/edit_view.dart';
+import 'package:notes_with_themes_app/features/home/data/models/note_model.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
+  const NoteItem({super.key, required this.note});
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
     final themeColor = Theme.of(context).colorScheme;
-    DateTime now = DateTime.now();
-    int hour = now.hour;
-    int minute = now.minute;
-    String period = hour >= 12 ? "PM" : "AM";
-
-    String formattedTime =
-        "${hour == 0 ? 12 : (hour > 12 ? hour - 12 : hour)}:${minute.toString().padLeft(2, '0')} $period";
-
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -33,7 +27,7 @@ class NoteItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "title",
+              note.title,
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -42,7 +36,7 @@ class NoteItem extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              "I am flutter developer",
+              note.note,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -67,7 +61,7 @@ class NoteItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  formattedTime,
+                  note.date,
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,

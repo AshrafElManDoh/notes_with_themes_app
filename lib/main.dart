@@ -13,6 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppSharedPref.init();
   await Hive.initFlutter();
+  Hive.registerAdapter(NoteModelAdapter());
   await Hive.openBox<NoteModel>(AppConstants.kNoteBox);
   final bool isDarkmode =
       AppSharedPref.getData(AppConstants.kAppThemeKey) as bool? ?? false;
