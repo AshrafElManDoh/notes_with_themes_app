@@ -40,4 +40,9 @@ class NoteCubit extends Cubit<NoteState> {
     noteController.clear();
     emit(AddNote());
   }
+
+  Future<void> deleteNote({required NoteModel note}) async {
+    await note.delete();
+    emit(DeleteNote());
+  }
 }
