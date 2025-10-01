@@ -6,10 +6,9 @@ class CustomTextFormField extends StatelessWidget {
     required this.maxLines,
     required this.controller,
     this.hint,
-    this.initialValue,
   });
   final int maxLines;
-  final String? hint, initialValue;
+  final String? hint;
   final TextEditingController controller;
 
   @override
@@ -18,7 +17,6 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       maxLines: maxLines,
-      initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
         if (value!.isEmpty) {

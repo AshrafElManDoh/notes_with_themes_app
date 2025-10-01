@@ -7,3 +7,4 @@ final class NoteInitial extends NoteState {}
 final class AddNote extends NoteState {}
 final class DeleteNote extends NoteState {}
 final class LoadNote extends NoteState {}
+final class EditNote extends NoteState {}

@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notes_with_themes_app/core/app_constants.dart';
@@ -11,7 +11,7 @@ class NoteCubit extends Cubit<NoteState> {
 
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController titleController = TextEditingController();
-  TextEditingController noteController = TextEditingController();
+  TextEditingController contentController = TextEditingController();
 
   String saveTime() {
     DateTime now = DateTime.now();
@@ -36,13 +36,25 @@ class NoteCubit extends Cubit<NoteState> {
     emit(LoadNote());
     var box = await Hive.openBox<NoteModel>(AppConstants.kNoteBox);
     box.add(note);
-    titleController.clear();
-    noteController.clear();
+    clearController();
     emit(AddNote());
+  }
+
+  void clearController() {
+    titleController.clear();
+    contentController.clear();
   }
 
   Future<void> deleteNote({required NoteModel note}) async {
     await note.delete();
     emit(DeleteNote());
+  }
+
+  Future<void> editNote({required NoteModel note}) async {
+    note.title = titleController.text;
+    note.note = contentController.text;
+    await note.save();
+    clearController();
+    emit(EditNote());
   }
 }

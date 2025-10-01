@@ -41,9 +41,9 @@ class BottomSheetBody extends StatelessWidget {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                hint: "note",
+                hint: "Content",
                 maxLines: 5,
-                controller: noteCubit.noteController,
+                controller: noteCubit.contentController,
               ),
               SizedBox(height: 32),
               CustomButton(
@@ -54,7 +54,7 @@ class BottomSheetBody extends StatelessWidget {
                     noteCubit.saveNote(
                       note: NoteModel(
                         title: noteCubit.titleController.text,
-                        note: noteCubit.noteController.text,
+                        note: noteCubit.contentController.text,
                         date: noteCubit.saveTime(),
                         color: 1,
                       ),
