@@ -15,7 +15,7 @@ class EditView extends StatelessWidget {
     final themeColor = Theme.of(context).colorScheme;
     final noteCubit = context.read<NoteCubit>();
     noteCubit.titleController.text = note.title;
-    noteCubit.contentController.text = note.note;
+    noteCubit.contentController.text = note.content;
     return Scaffold(
       appBar: CustomAppBar(),
       body: SingleChildScrollView(

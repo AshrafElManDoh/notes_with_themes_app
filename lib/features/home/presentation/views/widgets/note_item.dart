@@ -15,7 +15,7 @@ class NoteItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => EditView(note: note,)),
+          MaterialPageRoute(builder: (context) => EditView(note: note)),
         );
       },
       child: Container(
@@ -53,7 +53,7 @@ class NoteItem extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              note.note,
+              note.content,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -65,20 +65,8 @@ class NoteItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: themeColor.onPrimary,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
                   note.date,
+                  textAlign: TextAlign.end,
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,

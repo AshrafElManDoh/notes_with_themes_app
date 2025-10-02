@@ -54,7 +54,7 @@ class BottomSheetBody extends StatelessWidget {
                     noteCubit.saveNote(
                       note: NoteModel(
                         title: noteCubit.titleController.text,
-                        note: noteCubit.contentController.text,
+                        content: noteCubit.contentController.text,
                         date: noteCubit.saveTime(),
                         color: 1,
                       ),

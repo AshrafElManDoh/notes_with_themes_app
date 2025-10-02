@@ -17,10 +17,11 @@ class NoteCubit extends Cubit<NoteState> {
     DateTime now = DateTime.now();
     int hour = now.hour;
     int minute = now.minute;
+    String date = "${now.day}-${now.month}-${now.year}";
     String period = hour >= 12 ? "PM" : "AM";
 
     String formattedTime =
-        "${hour == 0 ? 12 : (hour > 12 ? hour - 12 : hour)}:${minute.toString().padLeft(2, '0')} $period";
+        "$date\n${hour == 0 ? 12 : (hour > 12 ? hour - 12 : hour)}:${minute.toString().padLeft(2, '0')} $period";
 
     return formattedTime;
   }
@@ -52,7 +53,7 @@ class NoteCubit extends Cubit<NoteState> {
 
   Future<void> editNote({required NoteModel note}) async {
     note.title = titleController.text;
-    note.note = contentController.text;
+    note.content = contentController.text;
     await note.save();
     clearController();
     emit(EditNote());
