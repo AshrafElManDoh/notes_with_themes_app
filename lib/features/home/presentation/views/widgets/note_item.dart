@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_with_themes_app/core/app_constants.dart';
+import 'package:notes_with_themes_app/core/helper/app_shared_pref.dart';
+import 'package:notes_with_themes_app/core/utils/app_colors.dart';
 import 'package:notes_with_themes_app/features/edit/presentation/views/edit_view.dart';
 import 'package:notes_with_themes_app/features/home/data/models/note_model.dart';
 import 'package:notes_with_themes_app/features/home/presentation/views_model/note_cubit/note_cubit.dart';
@@ -11,8 +14,14 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeColor = Theme.of(context).colorScheme;
+    final noteCubit = context.read<NoteCubit>();
+    List<Color> colors =
+        AppSharedPref.getData(AppConstants.kAppThemeKey) as bool
+        ? AppColors.darkColors
+        : AppColors.lightColors;
     return GestureDetector(
       onTap: () {
+        noteCubit.colorNewNoteIndex = note.color;
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => EditView(note: note)),
@@ -23,7 +32,7 @@ class NoteItem extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: themeColor.primaryContainer,
+          color: colors[note.color],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -12,6 +12,7 @@ class NoteCubit extends Cubit<NoteState> {
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController titleController = TextEditingController();
   TextEditingController contentController = TextEditingController();
+  int colorNewNoteIndex = 0;
 
   String saveTime() {
     DateTime now = DateTime.now();
@@ -37,13 +38,15 @@ class NoteCubit extends Cubit<NoteState> {
     emit(LoadNote());
     var box = await Hive.openBox<NoteModel>(AppConstants.kNoteBox);
     box.add(note);
-    clearController();
+    clearAll();
+    colorNewNoteIndex = 0;
     emit(AddNote());
   }
 
-  void clearController() {
+  void clearAll() {
     titleController.clear();
     contentController.clear();
+    colorNewNoteIndex = 0;
   }
 
   Future<void> deleteNote({required NoteModel note}) async {
@@ -54,8 +57,9 @@ class NoteCubit extends Cubit<NoteState> {
   Future<void> editNote({required NoteModel note}) async {
     note.title = titleController.text;
     note.content = contentController.text;
+    note.color = colorNewNoteIndex;
     await note.save();
-    clearController();
+    clearAll();
     emit(EditNote());
   }
 }

@@ -4,6 +4,7 @@ import 'package:notes_with_themes_app/core/widgets/custom_app_bar.dart';
 import 'package:notes_with_themes_app/core/widgets/custom_button.dart';
 import 'package:notes_with_themes_app/core/widgets/custom_text_form_field.dart';
 import 'package:notes_with_themes_app/features/home/data/models/note_model.dart';
+import 'package:notes_with_themes_app/features/home/presentation/views/widgets/select_color_widget.dart';
 import 'package:notes_with_themes_app/features/home/presentation/views_model/note_cubit/note_cubit.dart';
 
 class EditView extends StatelessWidget {
@@ -44,6 +45,8 @@ class EditView extends StatelessWidget {
                 maxLines: 5,
                 controller: noteCubit.contentController,
               ),
+              SizedBox(height: 32),
+              SelectColorWidget(),
               SizedBox(height: 32),
               CustomButton(
                 title: "Edit",

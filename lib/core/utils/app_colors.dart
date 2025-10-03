@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 abstract class AppColors {
   // light theme colors
   static const int primary = 0xFF6200EE;
@@ -13,6 +15,13 @@ abstract class AppColors {
   static const int onSurface = 0xFF000000;
   static const int onError = 0xFFFFFFFF;
 
+  // static const List<int> lightColors = [0xFF6200EE, 0xFFB00020, 0xFF018786];
+  static const List<Color> lightColors = [
+    Color(0xFF6200EE),
+    Color(0xFFB00020),
+    Color(0xFF018786),
+  ];
+
   // dark theme colors
   static const int darkPrimary = 0xFFBB86FC;
   static const int darkPrimaryVariant = 0xFF3700B3;
@@ -26,4 +35,11 @@ abstract class AppColors {
   static const int darkOnBackground = 0xFFFFFFFF;
   static const int darkOnSurface = 0xFFFFFFFF;
   static const int darkOnError = 0xFF000000;
+
+  // static const List<int> darkColors = [0xFFBB86FC, 0xFFCF6679, 0xFF03DAC6];
+  static const List<Color> darkColors = [
+    Color(0xFFBB86FC),
+    Color(0xFFCF6679),
+    Color(0xFF03DAC6),
+  ];
 }

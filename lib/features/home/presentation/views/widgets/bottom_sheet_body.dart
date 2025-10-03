@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_with_themes_app/core/widgets/custom_button.dart';
 import 'package:notes_with_themes_app/core/widgets/custom_text_form_field.dart';
 import 'package:notes_with_themes_app/features/home/data/models/note_model.dart';
+import 'package:notes_with_themes_app/features/home/presentation/views/widgets/select_color_widget.dart';
 import 'package:notes_with_themes_app/features/home/presentation/views_model/note_cubit/note_cubit.dart';
 
 class BottomSheetBody extends StatelessWidget {
@@ -46,6 +47,8 @@ class BottomSheetBody extends StatelessWidget {
                 controller: noteCubit.contentController,
               ),
               SizedBox(height: 32),
+              SelectColorWidget(),
+              SizedBox(height: 32),
               CustomButton(
                 title: "Add",
                 onTap: () {
@@ -56,7 +59,7 @@ class BottomSheetBody extends StatelessWidget {
                         title: noteCubit.titleController.text,
                         content: noteCubit.contentController.text,
                         date: noteCubit.saveTime(),
-                        color: 1,
+                        color: noteCubit.colorNewNoteIndex,
                       ),
                     );
                     Navigator.pop(context);

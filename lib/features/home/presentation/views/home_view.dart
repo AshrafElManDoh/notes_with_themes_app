@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
       appBar: CustomAppBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          noteCubit.clearController();
+          noteCubit.clearAll();
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,
